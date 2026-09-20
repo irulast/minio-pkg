@@ -5,6 +5,16 @@ This repository maintains `github.com/pgsty/silo-pkg/v3` for the SILO server,
 Console, and mcli client. Compatibility with unmodified upstream MinIO is best
 effort; coordinate breaking changes with the maintained SILO components.
 
+## Contributor recognition
+
+Every human issue or pull-request author is recognized in [CONTRIBUTORS.md](CONTRIBUTORS.md),
+including open issues, draft PRs, and PRs closed without merging. Merged fixes,
+adopted proposals, and reports that lead to fixes receive greater prominence;
+first participation guides the remaining order. Work incorporated through a
+later PR retains credit without changing the original PR's recorded status.
+Security disclosures are credited with the reporter's agreement. DCO sign-off
+applies to code commits, not to opening an issue.
+
 ## Licensing of Contributions
 
 Code contributions are accepted under [GNU AGPL v3.0 or later](LICENSE)
