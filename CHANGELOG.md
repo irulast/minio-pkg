@@ -1,5 +1,25 @@
 # Changelog
 
+## v3.14.2 — 2026-10-15
+
+[GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.2) ·
+[Changes since v3.14.1](https://github.com/pgsty/silo-pkg/compare/v3.14.1...v3.14.2)
+
+- Update upstream minio-go to v7.4.1. Failed multipart uploads are cleaned up
+  even after cancellation; retention timestamps are sent in UTC; STS duration
+  requests are preserved; projected Kubernetes token files are supported.
+  Parallel GET and ComposeObject remain opt-in.
+- Update go-jose to v4.1.6 for the RSA JWK parsing denial of service fix
+  [GHSA-mgcc-cww5-fp2q](https://github.com/go-jose/go-jose/security/advisories/GHSA-mgcc-cww5-fp2q).
+  JWK parsing now limits RSA keys to 4096 bits by default. Consumers using
+  larger keys must review their identity-provider configuration before upgrading.
+- Update LDAP to v3.4.15, msgp to v1.6.5 and the etcd client modules to v3.7.2.
+  Refresh x/crypto to v0.58.0, x/net to v0.61.0, x/sys to v0.49.0 and x/text
+  to v0.43.0. The x/net update includes the October HTTP/2 security fixes.
+- Use Go 1.27.2, golangci-lint v2.14.0 and govulncheck v1.9.0 for development.
+  Retain the Go 1.26 library floor and go-systemd v22.6.0 NetBSD replacement.
+  Public SILO package signatures and password-policy semantics are unchanged.
+
 ## v3.14.1 — 2026-09-16
 
 [GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.1) ·
