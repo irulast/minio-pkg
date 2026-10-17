@@ -1,5 +1,23 @@
 # Changelog
 
+## v3.14.3 — 2026-10-18
+
+[GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.3) ·
+[Changes since v3.14.2](https://github.com/pgsty/silo-pkg/compare/v3.14.2...v3.14.3)
+
+- Speed up `AdminAction.IsValid` and `HasResource` with exact lookups and
+  early rejection of patterns that cannot match. Preserve wildcard matching,
+  policy decisions, and bucket-scoped admin resource checks.
+- Add equivalence tests, a fuzz target, and a benchmark for policies with
+  many bucket grants. Independent alternating benchmarks measured about 82%
+  less policy-evaluation time in that scenario, with no additional allocations.
+- Keep public APIs, policy formats, dependencies, and the Go 1.26 library floor
+  unchanged. Server builds can adopt this optimization without requiring a
+  simultaneous mcli or standalone Console release.
+- Thanks to [Denis Babchuk (@botdeniska)](https://github.com/botdeniska) for
+  [PR #11](https://github.com/pgsty/silo-pkg/pull/11), and
+  [Klaus Post (@klauspost)](https://github.com/klauspost) for the original work.
+
 ## v3.14.2 — 2026-10-15
 
 [GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.2) ·
