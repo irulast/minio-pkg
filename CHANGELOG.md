@@ -1,5 +1,46 @@
 # Changelog
 
+## v3.15.0 — 2026-10-24
+
+[GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.0) ·
+[Changes since v3.14.3](https://github.com/pgsty/silo-pkg/compare/v3.14.3...v3.15.0)
+
+- Require **Go 1.27.3** for library consumers and development, replacing the
+  Go 1.26 library floor. Consumers must rebuild with the updated compiler to
+  receive its certificate-trust fix for CVE-2026-111943 / GO-2026-6809.
+- Update JWX to v3.4.0, all three etcd client/API modules to v3.7.3, gRPC to
+  v1.84.0, grpc-gateway to v2.32.0, and goccy/go-json to v0.11.2. Refresh
+  swag/conv, go-colorable, cpuid, fwd, and Google API/RPC generated modules.
+- Preserve public package APIs, policy formats and authorization semantics,
+  including the v3.14.3 policy fast paths. Keep go-humanize v1.0.1 and
+  go-runewidth v0.0.29 for CLI output compatibility, and the go-systemd
+  v22.6.0 replacement for NetBSD. Go does not inherit dependency replacements;
+  consuming applications must retain the replacements they need.
+- Pin development and CI to Go 1.27.3 and golangci-lint v2.15.0. This is a
+  source-only module release; installed SILO, Console and mcli binaries are
+  updated only when their own releases adopt the module and rebuild.
+- GO-2026-5932 remains an upstream advisory without a fixed version in the
+  deprecated OpenPGP packages. Those packages are not imported by this module.
+
+## v3.14.3 — 2026-10-18
+
+Published from `e9d585ba1e7a30ee5eb85b992d883820b83768f5`.
+[GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.3) ·
+[English notes](https://silo.pgsty.com/blog/release/pkg-3.14.3/) ·
+[中文说明](https://silo.pgsty.com/zh/blog/release/pkg-3.14.3/)
+
+- Add exact-lookup and wildcard-prefix fast paths to `AdminAction.IsValid`
+  and `HasResource` (#11), preserving wildcard semantics and bucket-scoped
+  resource checks. Add equivalence tests, fuzzing and policy benchmarks.
+- Preserve APIs, policy formats, authorization decisions, dependencies and
+  the Go 1.26 library floor. Existing mcli/Console artifacts remain on v3.14.2;
+  consumers receive the optimization only after updating and rebuilding.
+- Release validation includes Go 1.26/1.27 race tests, lint, LDAP, vulnerability
+  scanning, equivalence fuzzing and independent policy comparisons. The reported
+  82% reduction in one policy microbenchmark is not an S3 throughput claim.
+
+Thanks to Denis Babchuk (@botdeniska) and original author Klaus Post (@klauspost).
+
 ## v3.14.2 — 2026-10-15
 
 [GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.2) ·
