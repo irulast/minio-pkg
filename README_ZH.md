@@ -6,7 +6,7 @@ Pigsty 维护的 [minio/pkg](https://github.com/minio/pkg) 分支，为 SILO Ser
 
 ## 当前版本
 
-[v3.15.0](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.0) 要求 **Go 1.27.3**，更新 JWX、etcd、gRPC 等依赖，保留策略语义与 CLI 输出兼容性。完整变更见 [CHANGELOG.md](CHANGELOG.md)。
+[v3.15.1](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.1) 要求 **Go 1.27.3**，将 minio-go 更新至上游提交 `ab93db7ba435`，修复流式上传、对象读取与批量删除报错，保留策略语义与 CLI 输出兼容性。完整变更见 [CHANGELOG.md](CHANGELOG.md)。
 
 Server 20261018 选用 v3.14.3；已发布的 mcli 20261018 与 Console v2.4.2 仍使用 [v3.14.2 依赖基线](https://silo.pgsty.com/zh/blog/release/pkg-3.14.2/)。本模块仅发布源码，没有独立二进制或镜像，消费方须重新构建。组件的独立发布状态见[版本矩阵](https://silo.pgsty.com/zh/compatibility/versions/)。
 
@@ -15,7 +15,7 @@ Server 20261018 选用 v3.14.3；已发布的 mcli 20261018 与 Console v2.4.2 �
 直接声明模块，无需 `replace`：
 
 ```go
-require github.com/pgsty/silo-pkg/v3 v3.15.0
+require github.com/pgsty/silo-pkg/v3 v3.15.1
 ```
 
 ```go

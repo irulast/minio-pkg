@@ -1,5 +1,24 @@
 # Changelog
 
+## v3.15.1 — 2026-10-25
+
+[GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.1) ·
+[Changes since v3.15.0](https://github.com/pgsty/silo-pkg/compare/v3.15.0...v3.15.1)
+
+- Update upstream minio-go from v7.4.1 to
+  `v7.4.2-0.20261020194015-ab93db7ba435`. This exact upstream commit includes
+  six fixes after v7.4.1; upstream has not published a v7.4.2 tag.
+- Reject short streamed multipart uploads before sending the incomplete part,
+  including parallel streams. Preserve sequential reads after `ReadAt` reaches
+  EOF, reject negative `ReadAt` offsets before fetching metadata, and preserve
+  read/seek bounds after `Stat`. Report each failed `RemoveObjects` object once.
+- Retain Go 1.27.3, public package APIs, policy semantics and the v3.14.3 policy
+  optimizations. Other declared dependencies are current except the deliberate
+  go-humanize v1.0.1, go-runewidth v0.0.29 and go-systemd v22.6.0 compatibility
+  selections. This release does not add a new CVE fix.
+- This is a source-only module release. Consumers must adopt v3.15.1 and rebuild
+  to receive the SDK fixes; SILO, Console and mcli publish independently.
+
 ## v3.15.0 — 2026-10-24
 
 [GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.0) ·

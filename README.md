@@ -7,9 +7,10 @@ collection of common packages used in MinIO projects. It exists so the
 community MinIO fork has somewhere to take fixes that upstream, now driven by a
 closed product, will not carry.
 
-Current release: [v3.15.0](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.0).
-This maintenance release requires **Go 1.27.3**, updates JWX, etcd, gRPC and
-other dependencies, and preserves policy semantics and CLI output compatibility.
+Current release: [v3.15.1](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.1).
+This maintenance release requires **Go 1.27.3** and updates minio-go to upstream
+commit `ab93db7ba435`, fixing streamed uploads, object reads and batch-delete
+errors. It preserves policy semantics and CLI output compatibility.
 Server 20261018 uses v3.14.3; published mcli 20261018 and Console v2.4.2 still
 use v3.14.2. This source-only module has no binary or image; consumers must
 update their dependency and rebuild to adopt it.
@@ -23,7 +24,7 @@ Import it directly. This repository declares `module github.com/pgsty/silo-pkg/v
 so a consumer requires it by name and needs no `replace` directive:
 
 ```go
-require github.com/pgsty/silo-pkg/v3 v3.15.0
+require github.com/pgsty/silo-pkg/v3 v3.15.1
 ```
 
 ```go
