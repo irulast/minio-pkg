@@ -20,7 +20,7 @@ require (
 	github.com/lestrrat-go/jwx/v3 v3.4.0
 	github.com/mattn/go-colorable v0.1.16
 	github.com/mattn/go-isatty v0.0.24
-	github.com/minio/minio-go/v7 v7.4.2-0.20261020194015-ab93db7ba435
+	github.com/minio/minio-go/v7 v7.4.2-0.20261025165926-320af050c445
 	github.com/minio/mux v1.10.1
 	github.com/rjeczalik/notify v0.9.3
 	github.com/tinylib/msgp v1.6.5

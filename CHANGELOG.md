@@ -1,5 +1,17 @@
 # Changelog
 
+## v3.15.2 — 2026-10-26
+
+- Update upstream minio-go to `v7.4.2-0.20261025165926-320af050c445`.
+  Removing bucket replication now accepts HTTP 204 as well as HTTP 200,
+  including an empty configuration passed to SetBucketReplication. Other
+  responses still return their original error. Upstream has not tagged v7.4.2.
+- Keep Go 1.27.3, public APIs, policy semantics, and the verified output and
+  NetBSD compatibility selections. This is a protocol-correctness update,
+  with no newly claimed CVE fix.
+- Consumers must adopt v3.15.2 and rebuild; this source-only module release
+  does not update installed mcli, Console or SILO binaries.
+
 ## v3.15.1 — 2026-10-25
 
 [GitHub release](https://github.com/pgsty/silo-pkg/releases/tag/v3.15.1) ·
