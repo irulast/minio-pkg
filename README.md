@@ -11,8 +11,8 @@ Version: **v3.15.2**. See [GitHub releases](https://github.com/pgsty/silo-pkg/re
 This maintenance release requires **Go 1.27.3** and updates minio-go to upstream
 commit `320af050c445`, accepting HTTP 204 when removing bucket replication.
 It preserves policy semantics and CLI output compatibility.
-Server 20261018 uses v3.14.3; published mcli 20261025 and Console v2.5.0
-use v3.15.1. This source-only module has no binary or image; consumers must
+The published Server 20261026, mcli 20261026, and Console v2.5.1 all select
+v3.15.2. This source-only module has no binary or image; consumers must
 update their dependency and rebuild to adopt it.
 Read the [changelog](CHANGELOG.md) and [component version matrix](https://silo.pgsty.com/compatibility/versions/)
 before adopting the password-authorization changes introduced in v3.14.0.

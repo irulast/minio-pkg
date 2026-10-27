@@ -8,7 +8,7 @@ Pigsty 维护的 [minio/pkg](https://github.com/minio/pkg) 分支，为 SILO Ser
 
 **v3.15.2** 要求 **Go 1.27.3**，将 minio-go 更新至上游提交 `320af050c445`，修复删除桶复制配置时误将 HTTP 204 当作失败的问题，保留策略语义与 CLI 输出兼容性。发布状态见 [GitHub Releases](https://github.com/pgsty/silo-pkg/releases)。完整变更见 [CHANGELOG.md](CHANGELOG.md)。
 
-Server 20261018 选用 v3.14.3；已发布的 mcli 20261025 与 Console v2.5.0 使用 v3.15.1。本模块仅发布源码，没有独立二进制或镜像，消费方须重新构建。组件的独立发布状态见[版本矩阵](https://silo.pgsty.com/zh/compatibility/versions/)。
+已发布的 Server 20261026、mcli 20261026 与 Console v2.5.1 均选用 v3.15.2。本模块仅发布源码，没有独立二进制或镜像，消费方须重新构建。组件的独立发布状态见[版本矩阵](https://silo.pgsty.com/zh/compatibility/versions/)。
 
 ## 使用方法
 
