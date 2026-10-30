@@ -1,4 +1,4 @@
-module github.com/pgsty/silo-pkg/v3
+module github.com/minio/pkg/v3
 
 // Library consumers and maintained builds use the same Go release.
 go 1.27.3
@@ -61,7 +61,7 @@ require (
 	go.etcd.io/etcd/client/pkg/v3 v3.7.3 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.28.0 // indirect
-	golang.org/x/net v0.61.0 // indirect
+	golang.org/x/net v0.62.0 // indirect
 	golang.org/x/text v0.43.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20261019180522-ce908d29299b // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20261019180522-ce908d29299b // indirect

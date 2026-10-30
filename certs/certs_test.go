@@ -23,11 +23,10 @@ import (
 	"io"
 	"os"
 	"reflect"
-	"runtime"
 	"testing"
 	"time"
 
-	"github.com/pgsty/silo-pkg/v3/certs"
+	"github.com/minio/pkg/v3/certs"
 )
 
 func updateCerts(crt, key string) {
@@ -95,7 +94,10 @@ func TestValidPairAfterWrite(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	c, err := certs.NewManager(ctx, "public.crt", "private.key", tls.LoadX509KeyPair)
+	c, err := certs.NewManager(ctx, "public.crt", "private.key", tls.LoadX509KeyPair, func(m *certs.Manager) {
+		// Kubernetes uses polling instead of file notifications.
+		m.UpdateReloadDuration(25 * time.Millisecond)
+	})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -103,32 +105,22 @@ func TestValidPairAfterWrite(t *testing.T) {
 	updateCerts("new-public.crt", "new-private.key")
 	defer updateCerts("original-public.crt", "original-private.key")
 
-	// Wait for the write event. On Windows, file watching uses polling
-	// instead of fsnotify, so we need a longer wait.
-	wait := 200 * time.Millisecond
-	if runtime.GOOS == "windows" {
-		wait = 2 * time.Second
-	}
-	time.Sleep(wait)
-
-	hello := &tls.ClientHelloInfo{}
-	gcert, err := c.GetCertificate(hello)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if !reflect.DeepEqual(gcert.Certificate, expectedCert.Certificate) {
-		t.Error("certificate doesn't match expected certificate")
-	}
-
-	rInfo := &tls.CertificateRequestInfo{}
-	gcert, err = c.GetClientCertificate(rInfo)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if !reflect.DeepEqual(gcert.Certificate, expectedCert.Certificate) {
-		t.Error("client certificate doesn't match expected certificate")
+	deadline := time.Now().Add(5 * time.Second)
+	for {
+		serverCert, serverErr := c.GetCertificate(&tls.ClientHelloInfo{})
+		clientCert, clientErr := c.GetClientCertificate(&tls.CertificateRequestInfo{})
+		if serverErr != nil || clientErr != nil {
+			t.Fatalf("loading certificates: server=%v client=%v", serverErr, clientErr)
+		}
+		serverMatches := reflect.DeepEqual(serverCert.Certificate, expectedCert.Certificate)
+		clientMatches := reflect.DeepEqual(clientCert.Certificate, expectedCert.Certificate)
+		if serverMatches && clientMatches {
+			return
+		}
+		if time.Now().After(deadline) {
+			t.Fatalf("certificate reload did not complete: server=%v client=%v", serverMatches, clientMatches)
+		}
+		time.Sleep(25 * time.Millisecond)
 	}
 }
 

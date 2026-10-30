@@ -23,7 +23,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/pgsty/silo-pkg/v3/policy/condition"
+	"github.com/minio/pkg/v3/policy/condition"
 )
 
 func TestStatementIsAllowed(t *testing.T) {

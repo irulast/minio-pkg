@@ -22,20 +22,14 @@ Structure commits around single concerns with imperative subjects (e.g., `Add`, 
 ## Security & Configuration Tips
 Treat secrets, certificates, and credentials as sensitive: never commit real values. Validate inputs touching filesystem or network boundaries, rely on existing policy enforcement helpers, and update `README.md` when new environment variables or configuration flags are introduced.
 
-## SILO Dependency and Compatibility Policy
+## irulast Compatibility Policy
 
-This repository owns `github.com/pgsty/silo-pkg/v3` and is the preferred shared
-package for the maintained SILO server, Console, and mcli client. Those projects
-should import this path directly rather than route `github.com/minio/pkg/v3`
-through a replacement.
-
-Upstream MinIO compatibility is best effort. Do not omit, downgrade, or avoid a
-SILO API solely to preserve compilation of an unmodified upstream source graph.
-Coordinate genuine breaking changes with `pgsty/mc`, `pgsty/silo-console`, and
-`pgsty/silo`.
-
-Use the verified upstream `github.com/minio/minio-go/v7` module/commit unless a
-real SILO-only functional divergence justifies a fork.
+This branch maintains the historical `github.com/minio/pkg/v3` import identity
+for the owned MinIO server fork. Preserve it when backporting current fixes from
+PGSTY. Keep provenance, authorship, licenses, and DCO sign-off. Submit changes to
+irulast/minio-pkg; the upstream contribution destination above applies only when
+sending changes back upstream. Run builds and tests on the cluster through
+irulast/minio-build; do not use local Docker or change scanner dispositions.
 
 ## Git 内容与大文件规则
 
