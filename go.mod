@@ -1,4 +1,4 @@
-module github.com/pgsty/silo-pkg/v3
+module github.com/minio/pkg/v3
 
 // Library consumers and maintained builds use the same Go release.
 go 1.27.3

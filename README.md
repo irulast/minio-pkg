@@ -1,3 +1,18 @@
+# irulast MinIO shared-package maintenance
+
+This compatibility fork preserves the historical `github.com/minio/pkg/v3`
+module/import identity for our patched MinIO server and its existing console.
+It starts from PGSTY v3.15.2 (`0416eb1f450536ca2cc3592c2c2a06a3df88d4e0`),
+including the current IAM, policy matching, LDAP, and dependency fixes. Original
+copyright, attribution, and license notices are retained. Builds and validation
+run through the private `irulast/minio-build` cluster CI repository.
+
+The only code adaptation here is restoring the historical module/import identity.
+Use an immutable commit through a Go replace directive. A candidate is not a
+release until its consumer and library tests pass.
+
+---
+
 # silo-pkg
 
 [English](README.md) · [简体中文](README_ZH.md)
